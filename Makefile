@@ -1,8 +1,12 @@
 CC=gcc
 CFLAGS=-lWarn -pedantic
 
+irtester: irtester.o libmyifttt.a
+	$(CC) irtester.o -L. -lmyifttt -lcurl -o irtester
+
 tester: tester.o libmyifttt.a
 	$(CC) tester.o -L. -lmyifttt -lcurl -o tester
+
 
 libmyifttt.a:	ifttt.o
 	ar -rcs libmyifttt.a ifttt.o
@@ -15,3 +19,4 @@ tester.o:	tester.c ifttt.h
 
 clean:
 	rm tester *.o
+all: tester myothercode stuff
